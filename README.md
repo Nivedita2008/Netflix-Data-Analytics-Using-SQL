@@ -14,21 +14,21 @@ The data for this project is sourced from the Kaggle dataset:
 
 Dataset Link: Movies Dataset
 ## Schema
-DROP TABLE IF EXISTS netflix;
-CREATE TABLE netflix
+DROP TABLE IF EXISTS netflix; <br>
+CREATE TABLE netflix <br>
 (
-    show_id      VARCHAR(5),
-    type         VARCHAR(10),
-    title        VARCHAR(250),
-    director     VARCHAR(550),
-    casts        VARCHAR(1050),
-    country      VARCHAR(550),
-    date_added   VARCHAR(55),
-    release_year INT,
-    rating       VARCHAR(15),
-    duration     VARCHAR(15),
-    listed_in    VARCHAR(250),
-    description  VARCHAR(550)
+    show_id      VARCHAR(5), <br>
+    type         VARCHAR(10), <br>
+    title        VARCHAR(250), <br>
+    director     VARCHAR(550), <br>
+    casts        VARCHAR(1050), <br>
+    country      VARCHAR(550), <br>
+    date_added   VARCHAR(55), <br>
+    release_year INT, <br>
+    rating       VARCHAR(15), <br>
+    duration     VARCHAR(15), <br>
+    listed_in    VARCHAR(250), <br>
+    description  VARCHAR(550) <br>
 );
 ## Business Problems and Solutions
 # 1. Count the Number of Movies vs TV Shows
@@ -40,10 +40,10 @@ GROUP BY 1;<br>
 Objective: Determine the distribution of content types on Netflix.
 
 # 2. Find the Most Common Rating for Movies and TV Shows
-WITH RatingCounts AS (
-    SELECT 
-        type,
-        rating,
+WITH RatingCounts AS ( <br>
+    SELECT <br>
+        type, <br>
+        rating, <br>
         COUNT(*) AS rating_count
     FROM netflix
     GROUP BY type, rating
@@ -173,18 +173,18 @@ LIMIT 10;
 Objective: Identify the top 10 actors with the most appearances in Indian-produced movies.
 
 # 15. Categorize Content Based on the Presence of 'Kill' and 'Violence' Keywords
-SELECT 
-    category,
-    COUNT(*) AS content_count
-FROM (
-    SELECT 
-        CASE 
-            WHEN description ILIKE '%kill%' OR description ILIKE '%violence%' THEN 'Bad'
-            ELSE 'Good'
-        END AS category
-    FROM netflix
-) AS categorized_content
-GROUP BY category;
+SELECT  
+    category,  
+    COUNT(*) AS content_count  
+FROM (  
+    SELECT  
+        CASE  
+            WHEN description ILIKE '%kill%' OR description ILIKE '%violence%' THEN 'Bad'  
+            ELSE 'Good'  
+        END AS category  
+    FROM netflix  
+) AS categorized_content  
+GROUP BY category;  
 Objective: Categorize content as 'Bad' if it contains 'kill' or 'violence' and 'Good' otherwise. Count the number of items in each category.
 
 ## Findings and Conclusion
